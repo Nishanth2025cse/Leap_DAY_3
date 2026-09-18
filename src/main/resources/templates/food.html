@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie | Food Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <nav class="navbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">🍴</span>
+            <span>Foodie</span>
+        </a>
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+            <a href="/create">Create</a>
+            <a href="/read">Foods</a>
+            <a href="/update">Update</a>
+            <a href="/delete">Delete</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="eyebrow">Food Management System</p>
+        <h1>Manage your menu with ease.</h1>
+        <p>Create, view, update and remove food items from one clean dashboard. Every change is connected to your Spring Boot + JPA database.</p>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-icon">🍽️</div>
+            <div class="stat-value" th:text="${totalFoods}">0</div>
+            <div class="stat-label">TOTAL FOODS</div>
+        </div>
+        <div class="stat">
+            <div class="stat-icon">🟢</div>
+            <div class="stat-value" th:text="${availableFoods}">0</div>
+            <div class="stat-label">AVAILABLE NOW</div>
+        </div>
+        <div class="stat">
+            <div class="stat-icon">₹</div>
+            <div class="stat-value" th:text="${averagePrice != null ? '₹' + #numbers.formatDecimal(averagePrice, 1, 2) : '₹0.00'}">₹0.00</div>
+            <div class="stat-label">AVERAGE PRICE</div>
+        </div>
+    </section>
+
+    <h2 class="section-title">Quick Actions</h2>
+
+    <section class="crud-grid">
+        <a class="action-card" href="/create">
+            <span class="action-icon">➕</span>
+            <span><h3>Create Food</h3><p>Add a new food item to your menu.</p></span>
+            <span class="arrow">→</span>
+        </a>
+        <a class="action-card" href="/read">
+            <span class="action-icon">📋</span>
+            <span><h3>View Foods</h3><p>Browse every food item in the database.</p></span>
+            <span class="arrow">→</span>
+        </a>
+        <a class="action-card" href="/update">
+            <span class="action-icon">✏️</span>
+            <span><h3>Update Food</h3><p>Edit name, price or availability.</p></span>
+            <span class="arrow">→</span>
+        </a>
+        <a class="action-card" href="/delete">
+            <span class="action-icon">🗑️</span>
+            <span><h3>Delete Food</h3><p>Remove an item from the database.</p></span>
+            <span class="arrow">→</span>
+        </a>
+    </section>
+
+    <div class="footer">Built with Spring Boot · Spring Data JPA · MySQL</div>
+</div>
+</body>
+</html>

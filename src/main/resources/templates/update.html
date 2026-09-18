@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Food | Foodie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <nav class="navbar">
+        <a class="brand" href="/"><span class="brand-mark">🍴</span><span>Foodie</span></a>
+        <div class="nav-links"><a href="/">Dashboard</a><a href="/create">Create</a><a href="/read">Foods</a><a href="/update">Update</a><a href="/delete">Delete</a></div>
+    </nav>
+
+    <p class="eyebrow" style="color:#ea580c">UPDATE</p>
+    <h1 class="page-heading">Edit your food items</h1>
+    <p class="subtitle">Make changes to any saved food item. Each card updates one database record.</p>
+
+    <div th:if="${#lists.isEmpty(foods)}" class="card empty">
+        <div class="empty-icon">✏️</div>
+        <h3>Nothing to update</h3>
+        <p>Add a food item first.</p>
+        <a class="btn btn-primary" href="/create">Create Food</a>
+    </div>
+
+    <section th:unless="${#lists.isEmpty(foods)}" class="edit-grid">
+        <div class="edit-card" th:each="food : ${foods}" th:id="'food-' + ${food.id}">
+            <div class="card-top">
+                <span class="id-badge" th:text="'FOOD #' + ${food.id}">FOOD #1</span>
+                <span th:if="${food.isAvailable}" class="badge badge-yes">Available</span>
+                <span th:unless="${food.isAvailable}" class="badge badge-no">Not Available</span>
+            </div>
+
+            <form th:action="@{/update}" method="post">
+                <input type="hidden" name="id" th:value="${food.id}">
+
+                <div class="field">
+                    <label th:for="'name-' + ${food.id}">Food Name</label>
+                    <input th:id="'name-' + ${food.id}" type="text" name="foodName" th:value="${food.foodName}" required>
+                </div>
+
+                <div class="field">
+                    <label th:for="'price-' + ${food.id}">Price (₹)</label>
+                    <input th:id="'price-' + ${food.id}" type="number" name="price" th:value="${food.price}" step="0.01" min="0" required>
+                </div>
+
+                <div class="field">
+                    <label th:for="'available-' + ${food.id}">Availability</label>
+                    <select th:id="'available-' + ${food.id}" name="isAvailable" required>
+                        <option value="true" th:selected="${food.isAvailable == true}">🟢 Available</option>
+                        <option value="false" th:selected="${food.isAvailable == false}">🔴 Not Available</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" type="submit">✓ Save Changes</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="actions" style="margin-top:24px"><a class="btn btn-secondary" href="/">← Back Home</a><a class="btn btn-secondary" href="/read">View All Foods</a></div>
+    <div class="footer">Changes are saved directly to the food database.</div>
+</div>
+</body>
+</html>

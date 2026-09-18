@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Food | Foodie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <nav class="navbar">
+        <a class="brand" href="/"><span class="brand-mark">🍴</span><span>Foodie</span></a>
+        <div class="nav-links"><a href="/">Dashboard</a><a href="/create">Create</a><a href="/read">Foods</a><a href="/update">Update</a><a href="/delete">Delete</a></div>
+    </nav>
+
+    <main class="card form-card">
+        <p class="eyebrow" style="color:#ea580c">CREATE</p>
+        <h1 class="page-heading">Add a new food</h1>
+        <p class="subtitle">Enter the details below to add a food item to your menu.</p>
+
+        <form th:action="@{/create}" th:object="${food}" method="post">
+            <div class="field">
+                <label for="foodName">Food Name</label>
+                <input id="foodName" type="text" th:field="*{foodName}" placeholder="e.g. Chicken Biryani" required>
+            </div>
+
+            <div class="field">
+                <label for="price">Price (₹)</label>
+                <input id="price" type="number" th:field="*{price}" step="0.01" min="0" placeholder="e.g. 180.00" required>
+            </div>
+
+            <div class="field">
+                <label for="isAvailable">Availability</label>
+                <select id="isAvailable" th:field="*{isAvailable}" required>
+                    <option value="">Choose availability</option>
+                    <option value="true">🟢 Available</option>
+                    <option value="false">🔴 Not Available</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">➕ Add Food</button>
+                <a class="btn btn-secondary" href="/">← Back Home</a>
+            </div>
+        </form>
+    </main>
+    <div class="footer">Your new item will be saved to the food database.</div>
+</div>
+</body>
+</html>

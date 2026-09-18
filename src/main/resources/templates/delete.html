@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Food | Foodie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <nav class="navbar">
+        <a class="brand" href="/"><span class="brand-mark">🍴</span><span>Foodie</span></a>
+        <div class="nav-links"><a href="/">Dashboard</a><a href="/create">Create</a><a href="/read">Foods</a><a href="/update">Update</a><a href="/delete">Delete</a></div>
+    </nav>
+
+    <p class="eyebrow" style="color:#dc2626">DELETE</p>
+    <h1 class="page-heading">Remove a food item</h1>
+    <p class="subtitle">Choose an item below to permanently remove it from your database.</p>
+
+    <div class="danger-box">⚠️ <strong>Please check before deleting.</strong> This action permanently removes the selected food record.</div>
+
+    <div th:if="${#lists.isEmpty(foods)}" class="card empty">
+        <div class="empty-icon">🗑️</div>
+        <h3>No food records found</h3>
+        <p>There is nothing to delete right now.</p>
+    </div>
+
+    <section th:unless="${#lists.isEmpty(foods)}" class="delete-grid">
+        <div class="delete-card" th:each="food : ${foods}">
+            <div class="action-icon">🍽️</div>
+            <div class="food-info">
+                <h3 th:text="${food.foodName}">Pizza</h3>
+                <p><span th:text="'₹' + ${#numbers.formatDecimal(food.price, 1, 2)}">₹250.00</span> · ID <strong th:text="${food.id}">1</strong></p>
+            </div>
+            <form th:action="@{/delete}" method="post">
+                <input type="hidden" name="id" th:value="${food.id}">
+                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to permanently delete this food?');">🗑 Delete</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="actions" style="margin-top:24px"><a class="btn btn-secondary" href="/">← Back Home</a><a class="btn btn-secondary" href="/read">View All Foods</a></div>
+    <div class="footer">Delete only the records you no longer need.</div>
+</div>
+</body>
+</html>

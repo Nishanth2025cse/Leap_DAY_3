@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foods | Foodie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <nav class="navbar">
+        <a class="brand" href="/"><span class="brand-mark">🍴</span><span>Foodie</span></a>
+        <div class="nav-links"><a href="/">Dashboard</a><a href="/create">Create</a><a href="/read">Foods</a><a href="/update">Update</a><a href="/delete">Delete</a></div>
+    </nav>
+
+    <div class="toolbar">
+        <div>
+            <p class="eyebrow" style="color:#ea580c">READ</p>
+            <h1 class="page-heading">Your food menu</h1>
+            <p class="subtitle">All food items currently stored in the database.</p>
+        </div>
+        <a class="btn btn-primary" href="/create">➕ Add Food</a>
+    </div>
+
+    <div th:if="${created}" class="notice">✓ Food was added successfully.</div>
+    <div th:if="${updated}" class="notice">✓ Food was updated successfully.</div>
+    <div th:if="${deleted}" class="notice">✓ Food was deleted successfully.</div>
+
+    <div class="card">
+        <div th:if="${#lists.isEmpty(foods)}" class="empty">
+            <div class="empty-icon">🍽️</div>
+            <h3>Your menu is empty</h3>
+            <p>Add your first food item to see it here.</p>
+            <a class="btn btn-primary" href="/create">Create First Food</a>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(foods)}" class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>ID</th><th>Food Name</th><th>Price</th><th>Availability</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="food : ${foods}">
+                    <td><span class="id-badge" th:text="'#' + ${food.id}">#1</span></td>
+                    <td class="food-name" th:text="${food.foodName}">Pizza</td>
+                    <td class="price" th:text="'₹' + ${#numbers.formatDecimal(food.price, 1, 2)}">₹250.00</td>
+                    <td>
+                        <span th:if="${food.isAvailable}" class="badge badge-yes">● Available</span>
+                        <span th:unless="${food.isAvailable}" class="badge badge-no">● Not Available</span>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" th:href="@{/update#food-{id}(id=${food.id})}">✏️ Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">Live data from MySQL via Spring Data JPA.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Order Form</title>
+</head>
+
+<body>
+
+    <h1>Food Ordering Form</h1>
+
+    <p>Please enter your details to place your food order.</p>
+
+    <form>
+
+        <!-- Customer Details -->
+
+        <h2>Customer Details</h2>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name"
+               placeholder="Enter your full name" required>
+        <br><br>
+
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone"
+               placeholder="Enter your phone number" required>
+        <br><br>
+
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"
+               placeholder="Enter your email">
+        <br><br>
+
+
+        <!-- Delivery Address -->
+
+        <h2>Delivery Details</h2>
+
+        <label for="address">Delivery Address:</label><br>
+        <textarea id="address" name="address"
+                  rows="5" cols="40"
+                  placeholder="Enter your complete delivery address"
+                  required></textarea>
+        <br><br>
+
+
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city"
+               placeholder="Enter your city" required>
+        <br><br>
+
+
+        <label for="pincode">PIN Code:</label><br>
+        <input type="text" id="pincode" name="pincode"
+               placeholder="Enter PIN code" required>
+        <br><br>
+
+
+        <!-- Food Details -->
+
+        <h2>Food Details</h2>
+
+        <label for="restaurant">Select Restaurant:</label><br>
+
+        <select id="restaurant" name="restaurant" required>
+
+            <option value="">-- Select Restaurant --</option>
+            <option value="restaurant1">Spice Garden</option>
+            <option value="restaurant2">Food Palace</option>
+            <option value="restaurant3">Burger House</option>
+            <option value="restaurant4">Pizza Corner</option>
+
+        </select>
+
+        <br><br>
+
+
+        <label for="food">Select Food:</label><br>
+
+        <select id="food" name="food" required>
+
+            <option value="">-- Select Food --</option>
+            <option value="biryani">Chicken Biryani</option>
+            <option value="fried-rice">Chicken Fried Rice</option>
+            <option value="burger">Cheese Burger</option>
+            <option value="pizza">Margherita Pizza</option>
+            <option value="noodles">Chicken Noodles</option>
+            <option value="dosa">Masala Dosa</option>
+
+        </select>
+
+        <br><br>
+
+
+        <label for="quantity">Quantity:</label><br>
+
+        <input type="number"
+               id="quantity"
+               name="quantity"
+               min="1"
+               value="1"
+               required>
+
+        <br><br>
+
+
+        <label for="instructions">Special Instructions:</label><br>
+
+        <textarea id="instructions"
+                  name="instructions"
+                  rows="4"
+                  cols="40"
+                  placeholder="Example: Less spicy, no onions, etc."></textarea>
+
+        <br><br>
+
+
+        <!-- Delivery Time -->
+
+        <h2>Delivery Time</h2>
+
+        <label>Select Delivery Time:</label><br>
+
+        <input type="radio"
+               id="asap"
+               name="delivery_time"
+               value="as_soon_as_possible"
+               required>
+
+        <label for="asap">
+            As soon as possible
+        </label>
+
+        <br>
+
+        <input type="radio"
+               id="schedule"
+               name="delivery_time"
+               value="schedule">
+
+        <label for="schedule">
+            Schedule for later
+        </label>
+
+        <br><br>
+
+
+        <label for="date">Delivery Date:</label><br>
+
+        <input type="date"
+               id="date"
+               name="date">
+
+        <br><br>
+
+
+        <label for="time">Delivery Time:</label><br>
+
+        <input type="time"
+               id="time"
+               name="time">
+
+        <br><br>
+
+
+        <!-- Payment -->
+
+        <h2>Payment Method</h2>
+
+        <input type="radio"
+               id="cod"
+               name="payment"
+               value="cash"
+               required>
+
+        <label for="cod">
+            Cash on Delivery
+        </label>
+
+        <br>
+
+        <input type="radio"
+               id="upi"
+               name="payment"
+               value="upi">
+
+        <label for="upi">
+            UPI
+        </label>
+
+        <br>
+
+        <input type="radio"
+               id="card"
+               name="payment"
+               value="card">
+
+        <label for="card">
+            Credit / Debit Card
+        </label>
+
+        <br><br>
+
+
+        <!-- Terms -->
+
+        <input type="checkbox"
+               id="terms"
+               name="terms"
+               required>
+
+        <label for="terms">
+            I confirm that the above details are correct.
+        </label>
+
+        <br><br>
+
+
+        <!-- Submit -->
+
+        <button type="submit">
+            Place Order
+        </button>
+
+        <button type="reset">
+            Clear
+        </button>
+
+    </form>
+
+</body>
+
+</html>
